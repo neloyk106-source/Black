@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -345,37 +346,37 @@ body{
 
 <div class="screen" id="createScreen">
 
-<div class="subtitle">
-    Draw a pattern using at least 4 points.
-</div>
+    <div class="subtitle">
+        Draw a pattern using at least 4 points.
+    </div>
 
-<div class="pattern-box" id="createPatternBox">
+    <div class="pattern-box" id="createPatternBox">
 
-    <div
-        class="pattern-lines"
-        id="createLines">
+        <div
+            class="pattern-lines"
+            id="createLines">
+        </div>
+
+        <div
+            class="dots"
+            id="createDots">
+        </div>
+
     </div>
 
     <div
-        class="dots"
-        id="createDots">
+        class="status"
+        id="createStatus">
     </div>
 
-</div>
+    <button
+        class="button"
+        id="nextButton"
+        disabled>
 
-<div
-    class="status"
-    id="createStatus">
-</div>
+        Continue
 
-<button
-    class="button"
-    id="nextButton"
-    disabled>
-
-    Continue
-
-</button>
+    </button>
 
 </div>
 
@@ -384,39 +385,39 @@ body{
 
 <div class="screen" id="repeatScreen">
 
-<div class="subtitle">
-    Draw the same pattern again to confirm.
-</div>
-
-<div
-    class="pattern-box"
-    id="repeatPatternBox">
-
-    <div
-        class="pattern-lines"
-        id="repeatLines">
+    <div class="subtitle">
+        Draw the same pattern again to confirm.
     </div>
 
     <div
-        class="dots"
-        id="repeatDots">
+        class="pattern-box"
+        id="repeatPatternBox">
+
+        <div
+            class="pattern-lines"
+            id="repeatLines">
+        </div>
+
+        <div
+            class="dots"
+            id="repeatDots">
+        </div>
+
     </div>
 
-</div>
+    <div
+        class="status"
+        id="repeatStatus">
+    </div>
 
-<div
-    class="status"
-    id="repeatStatus">
-</div>
+    <button
+        class="button"
+        id="confirmButton"
+        disabled>
 
-<button
-    class="button"
-    id="confirmButton"
-    disabled>
+        Confirm Pattern
 
-    Confirm Pattern
-
-</button>
+    </button>
 
 </div>
 
@@ -425,38 +426,38 @@ body{
 
 <div class="screen" id="accessScreen">
 
-<div class="subtitle">
-    Draw your saved pattern to access the account.
-</div>
-
-<div
-    class="pattern-box"
-    id="accessPatternBox">
-
-    <div
-        class="pattern-lines"
-        id="accessLines">
+    <div class="subtitle">
+        Draw your saved pattern to access the account.
     </div>
 
     <div
-        class="dots"
-        id="accessDots">
+        class="pattern-box"
+        id="accessPatternBox">
+
+        <div
+            class="pattern-lines"
+            id="accessLines">
+        </div>
+
+        <div
+            class="dots"
+            id="accessDots">
+        </div>
+
     </div>
 
-</div>
+    <div
+        class="status"
+        id="accessStatus">
+    </div>
 
-<div
-    class="status"
-    id="accessStatus">
-</div>
+    <div
+        class="attempts"
+        id="attemptsText">
 
-<div
-    class="attempts"
-    id="attemptsText">
+        Incorrect Attempts: 0 / 7
 
-    Incorrect Attempts: 0 / 7
-
-</div>
+    </div>
 
 </div>
 
@@ -465,26 +466,26 @@ body{
 
 <div class="screen" id="lockScreen">
 
-<div class="subtitle">
+    <div class="subtitle">
 
-    Too many incorrect attempts.<br>
+        Too many incorrect attempts.<br>
 
-    Please wait until the lock expires.
+        Please wait until the lock expires.
 
-</div>
+    </div>
 
-<div
-    class="countdown"
-    id="countdown">
+    <div
+        class="countdown"
+        id="countdown">
 
-    00:00
+        00:00
 
-</div>
+    </div>
 
-<div
-    class="status"
-    id="lockStatus">
-</div>
+    <div
+        class="status"
+        id="lockStatus">
+    </div>
 
 </div>
 
@@ -493,25 +494,25 @@ body{
 
 <div class="screen" id="blockedScreen">
 
-<div class="blocked-title">
-    Account Blocked
-</div>
+    <div class="blocked-title">
+        Account Blocked
+    </div>
 
-<div class="blocked-text">
+    <div class="blocked-text">
 
-    This account has been permanently blocked
-    because the maximum number of incorrect
-    pattern attempts was reached.
+        This account has been permanently blocked
+        because the maximum number of incorrect
+        pattern attempts was reached.
 
-</div>
+    </div>
 
-<button
-    class="button"
-    id="createAccount">
+    <button
+        class="button"
+        id="createAccount">
 
-    Create a New Account
+        Create a New Account
 
-</button>
+    </button>
 
 </div>
 
@@ -520,18 +521,10 @@ body{
 
 <script>
 
-/* =====================================================
-   PAGE SETTINGS
-===================================================== */
-
-const HOME_PAGE = "index.html";
+const HOME_PAGE = "home.html";
 
 const REGISTRATION_PAGE = "registration.html";
 
-
-/* =====================================================
-   LOCAL STORAGE KEYS
-===================================================== */
 
 const PATTERN_KEY =
     "portal_saved_pattern";
@@ -546,38 +539,40 @@ const BLOCKED_KEY =
     "portal_account_blocked";
 
 
-/* =====================================================
-   LOCK SYSTEM
+/*
+    LOCK SYSTEM
 
-   1st wrong → 30 seconds
-   2nd wrong → 1 minute
-   3rd wrong → 5 minutes
-   4th wrong → 5 hours
-   5th wrong → 12 hours
-   6th wrong → 24 hours
-   7th wrong → Account Blocked
-===================================================== */
+    1st wrong → 30 seconds
+    2nd wrong → 1 minute
+    3rd wrong → 5 minutes
+    4th wrong → 5 hours
+    5th wrong → 12 hours
+    6th wrong → 24 hours
+    7th wrong → Account Blocked
+*/
 
 const LOCK_TIMES = {
 
-    1: 30 * 1000,
+    1:
+        30 * 1000,
 
-    2: 1 * 60 * 1000,
+    2:
+        1 * 60 * 1000,
 
-    3: 5 * 60 * 1000,
+    3:
+        5 * 60 * 1000,
 
-    4: 5 * 60 * 60 * 1000,
+    4:
+        5 * 60 * 60 * 1000,
 
-    5: 12 * 60 * 60 * 1000,
+    5:
+        12 * 60 * 60 * 1000,
 
-    6: 24 * 60 * 60 * 1000
+    6:
+        24 * 60 * 60 * 1000
 
 };
 
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
 
 const createScreen =
     document.getElementById(
@@ -628,9 +623,6 @@ let repeatPattern = "";
 let countdownInterval = null;
 
 
-/* =====================================================
-   SCREEN CONTROL
-===================================================== */
 
 function showScreen(id){
 
@@ -656,29 +648,27 @@ function showScreen(id){
 }
 
 
-/* =====================================================
-   GET ATTEMPTS
-===================================================== */
+
+/*
+    Current incorrect attempt count
+*/
 
 function getAttempts(){
 
     return parseInt(
-
         localStorage.getItem(
             ATTEMPT_KEY
         ) || "0",
-
         10
-
     );
 }
 
 
-/* =====================================================
-   RESET SECURITY STATE
 
-   Correct pattern হলে reset হবে।
-===================================================== */
+/*
+    Correct Pattern দিলে
+    সম্পূর্ণ security cycle reset হবে।
+*/
 
 function resetAccessState(){
 
@@ -696,19 +686,14 @@ function resetAccessState(){
     localStorage.removeItem(
         BLOCKED_KEY
     );
-
-
-    clearInterval(
-        countdownInterval
-    );
-
-    countdownInterval = null;
 }
 
 
-/* =====================================================
-   CORRECT PATTERN → HOME
-===================================================== */
+
+/*
+    Correct Pattern →
+    Reset → Home Page
+*/
 
 function goHome(){
 
@@ -719,9 +704,11 @@ function goHome(){
 }
 
 
-/* =====================================================
-   CREATE NEW ACCOUNT FROM BLOCKED SCREEN
-===================================================== */
+
+/*
+    Blocked Screen থেকে
+    নতুন Account তৈরি।
+*/
 
 createAccount.addEventListener(
     "click",
@@ -731,23 +718,9 @@ createAccount.addEventListener(
             PATTERN_KEY
         );
 
-        localStorage.removeItem(
-            "portal_registered"
-        );
-
-        localStorage.removeItem(
-            "portal_username"
-        );
-
-        localStorage.removeItem(
-            "portal_password"
-        );
-
-        localStorage.removeItem(
-            "portal_logged_in"
-        );
 
         resetAccessState();
+
 
         window.location.href =
             REGISTRATION_PAGE;
@@ -756,9 +729,6 @@ createAccount.addEventListener(
 );
 
 
-/* =====================================================
-   PATTERN DRAWER
-===================================================== */
 
 function createPatternDrawer(
     boxId,
@@ -802,6 +772,7 @@ function createPatternDrawer(
     };
 
 
+
     for(
         let i = 1;
         i <= 9;
@@ -829,6 +800,7 @@ function createPatternDrawer(
             dot
         );
     }
+
 
 
     const pairs = {
@@ -860,6 +832,7 @@ function createPatternDrawer(
     };
 
 
+
     function pointFromEvent(e){
 
         const rect =
@@ -877,6 +850,7 @@ function createPatternDrawer(
 
         };
     }
+
 
 
     function findDot(x,y){
@@ -924,6 +898,7 @@ function createPatternDrawer(
     }
 
 
+
     function addPoint(point){
 
         if(
@@ -963,6 +938,7 @@ function createPatternDrawer(
 
         updateVisuals();
     }
+
 
 
     function updateVisuals(){
@@ -1048,11 +1024,13 @@ function createPatternDrawer(
             line.style.top =
                 y1 + "px";
 
+
             line.style.width =
                 Math.hypot(
                     dx,
                     dy
                 ) + "px";
+
 
             line.style.transform =
                 `rotate(${Math.atan2(
@@ -1068,6 +1046,7 @@ function createPatternDrawer(
     }
 
 
+
     function clear(){
 
         points.length = 0;
@@ -1078,6 +1057,7 @@ function createPatternDrawer(
 
         updateVisuals();
     }
+
 
 
     function showError(){
@@ -1128,12 +1108,18 @@ function createPatternDrawer(
     }
 
 
+
     function finish(){
 
         drawing = false;
 
         currentPoint = null;
 
+
+        /*
+            4 points-এর কম হলে
+            Pattern valid হবে না।
+        */
 
         if(points.length < 4){
 
@@ -1153,6 +1139,7 @@ function createPatternDrawer(
 
         clear();
     }
+
 
 
     box.addEventListener(
@@ -1182,6 +1169,7 @@ function createPatternDrawer(
 
         }
     );
+
 
 
     box.addEventListener(
@@ -1221,6 +1209,7 @@ function createPatternDrawer(
     );
 
 
+
     box.addEventListener(
         "pointerup",
         e => {
@@ -1231,6 +1220,7 @@ function createPatternDrawer(
 
         }
     );
+
 
 
     box.addEventListener(
@@ -1252,9 +1242,10 @@ function createPatternDrawer(
 }
 
 
-/* =====================================================
-   CREATE PATTERN
-===================================================== */
+
+/*
+    CREATE PATTERN
+*/
 
 const createDrawer =
     createPatternDrawer(
@@ -1306,9 +1297,20 @@ const createDrawer =
     );
 
 
-/* =====================================================
-   REPEAT PATTERN
-===================================================== */
+
+/*
+    REPEAT PATTERN
+
+    Repeat Pattern যদি
+    প্রথম Pattern-এর সাথে
+    match না করে,
+
+    তাহলে Error animation-এর পরে
+    আবার Create Pattern Screen-এ
+    নিয়ে যাবে।
+
+    অর্থাৎ নতুন Pattern তৈরি করতে হবে।
+*/
 
 const repeatDrawer =
     createPatternDrawer(
@@ -1348,6 +1350,11 @@ const repeatDrawer =
                     true;
 
 
+                /*
+                    Pattern empty হলে
+                    আগের মতোই invalid থাকবে।
+                */
+
                 if(!repeatPattern){
 
                     document
@@ -1361,6 +1368,12 @@ const repeatDrawer =
                 }
 
 
+                /*
+                    Pattern আলাদা হলে
+                    Error দেখিয়ে
+                    Create Pattern Screen-এ ফিরে যাবে।
+                */
+
                 document
                     .getElementById(
                         "repeatStatus"
@@ -1371,6 +1384,11 @@ const repeatDrawer =
 
                 repeatDrawer.showError();
 
+
+                /*
+                    Error animation শেষ হওয়ার
+                    সাথে সাথে নতুন Pattern Screen।
+                */
 
                 setTimeout(() => {
 
@@ -1418,9 +1436,10 @@ const repeatDrawer =
     );
 
 
-/* =====================================================
-   ACCESS PATTERN
-===================================================== */
+
+/*
+    ACCESS PATTERN
+*/
 
 const accessDrawer =
     createPatternDrawer(
@@ -1444,9 +1463,6 @@ const accessDrawer =
     );
 
 
-/* =====================================================
-   CREATE → REPEAT
-===================================================== */
 
 nextButton.addEventListener(
     "click",
@@ -1462,6 +1478,7 @@ nextButton.addEventListener(
 
 
         repeatPattern = "";
+
 
         repeatDrawer.clear();
 
@@ -1485,9 +1502,6 @@ nextButton.addEventListener(
 );
 
 
-/* =====================================================
-   CONFIRM PATTERN
-===================================================== */
 
 confirmButton.addEventListener(
     "click",
@@ -1506,6 +1520,11 @@ confirmButton.addEventListener(
             createPattern !==
             repeatPattern
         ){
+
+            /*
+                Safety check:
+                mismatch হলে আবার Create Screen।
+            */
 
             document
                 .getElementById(
@@ -1564,9 +1583,17 @@ confirmButton.addEventListener(
         }
 
 
-        /* =================================================
-           PATTERN SUCCESSFULLY CONFIRMED
-        ================================================= */
+        /*
+            Pattern successfully confirmed.
+
+            Correct Pattern হলে
+            saved pattern হিসেবে
+            localStorage-এ save হবে।
+
+            তারপর সরাসরি
+            registration.html
+            এ যাবে।
+        */
 
         localStorage.setItem(
             PATTERN_KEY,
@@ -1584,9 +1611,10 @@ confirmButton.addEventListener(
 );
 
 
-/* =====================================================
-   VERIFY ACCESS
-===================================================== */
+
+/*
+    VERIFY ACCESS
+*/
 
 function verifyAccess(pattern){
 
@@ -1606,7 +1634,13 @@ function verifyAccess(pattern){
     }
 
 
-    /* Correct Pattern */
+    /*
+        Correct Pattern হলে:
+
+        Attempts reset
+        Lock reset
+        Direct Home Page
+    */
 
     if(
         pattern === savedPattern
@@ -1618,15 +1652,22 @@ function verifyAccess(pattern){
     }
 
 
-    /* Wrong Pattern */
-
     wrongAccessAttempt();
 }
 
 
-/* =====================================================
-   WRONG PATTERN
-===================================================== */
+
+/*
+    WRONG PATTERN SYSTEM
+
+    1 → 30 Seconds
+    2 → 1 Minute
+    3 → 5 Minutes
+    4 → 5 Hours
+    5 → 12 Hours
+    6 → 24 Hours
+    7 → Permanently Blocked
+*/
 
 function wrongAccessAttempt(){
 
@@ -1645,15 +1686,10 @@ function wrongAccessAttempt(){
         "Incorrect pattern ✕";
 
 
-    document
-        .getElementById(
-            "attemptsText"
-        )
-        .textContent =
-        `Incorrect Attempts: ${attempts} / 7`;
-
-
-    /* 7th Attempt = Permanent Block */
+    /*
+        7th Wrong Attempt
+        Account Blocked
+    */
 
     if(attempts >= 7){
 
@@ -1687,7 +1723,10 @@ function wrongAccessAttempt(){
     }
 
 
-    /* 1st–6th Attempt */
+    /*
+        1st থেকে 6th Wrong Attempt
+        নির্দিষ্ট সময়ের Lock।
+    */
 
     localStorage.setItem(
         ATTEMPT_KEY,
@@ -1712,14 +1751,6 @@ function wrongAccessAttempt(){
     );
 
 
-    document
-        .getElementById(
-            "lockStatus"
-        )
-        .textContent =
-        `Incorrect attempt ${attempts} / 7`;
-
-
     startLiveCountdown(
         lockUntil
     );
@@ -1731,9 +1762,10 @@ function wrongAccessAttempt(){
 }
 
 
-/* =====================================================
-   TIME FORMAT
-===================================================== */
+
+/*
+    TIME FORMAT
+*/
 
 function formatTime(ms){
 
@@ -1762,6 +1794,11 @@ function formatTime(ms){
         total % 60;
 
 
+    /*
+        Hours থাকলে
+        HH:MM:SS
+    */
+
     if(h > 0){
 
         return [
@@ -1785,6 +1822,11 @@ function formatTime(ms){
     }
 
 
+    /*
+        Minutes/Seconds
+        MM:SS
+    */
+
     return [
 
         String(m).padStart(
@@ -1801,9 +1843,10 @@ function formatTime(ms){
 }
 
 
-/* =====================================================
-   LIVE COUNTDOWN
-===================================================== */
+
+/*
+    LIVE LOCK COUNTDOWN
+*/
 
 function startLiveCountdown(
     lockUntil
@@ -1821,6 +1864,10 @@ function startLiveCountdown(
             Date.now();
 
 
+        /*
+            Lock শেষ।
+        */
+
         if(remaining <= 0){
 
             clearInterval(
@@ -1828,13 +1875,17 @@ function startLiveCountdown(
             );
 
 
-            countdownInterval = null;
-
-
             localStorage.removeItem(
                 LOCK_UNTIL_KEY
             );
 
+
+            /*
+                Attempts reset হবে না।
+
+                পরবর্তী ভুল হলে
+                পরবর্তী Step-এর Lock হবে।
+            */
 
             accessDrawer.clear();
 
@@ -1843,7 +1894,8 @@ function startLiveCountdown(
                 .getElementById(
                     "accessStatus"
                 )
-                .textContent = "";
+                .textContent =
+                "";
 
 
             const attempts =
@@ -1889,9 +1941,10 @@ function startLiveCountdown(
 }
 
 
-/* =====================================================
-   PAGE LOAD CHECK
-===================================================== */
+
+/*
+    PAGE LOAD CHECK
+*/
 
 function checkAccount(){
 
@@ -1919,7 +1972,9 @@ function checkAccount(){
         );
 
 
-    /* Blocked */
+    /*
+        Blocked Account
+    */
 
     if(blocked){
 
@@ -1931,7 +1986,10 @@ function checkAccount(){
     }
 
 
-    /* No Pattern */
+    /*
+        No Pattern →
+        Create Pattern Screen
+    */
 
     if(!savedPattern){
 
@@ -1955,7 +2013,9 @@ function checkAccount(){
     }
 
 
-    /* Lock Active */
+    /*
+        Lock চলছে।
+    */
 
     if(
         lockUntil > Date.now()
@@ -1974,7 +2034,12 @@ function checkAccount(){
     }
 
 
-    /* Expired Lock */
+    /*
+        Lock শেষ হয়ে গেলে
+        Lock remove হবে।
+
+        Attempts থাকবে।
+    */
 
     if(
         lockUntil &&
@@ -2005,9 +2070,11 @@ function checkAccount(){
 }
 
 
-/* =====================================================
-   VISIBILITY CHANGE
-===================================================== */
+
+/*
+    App/Tab-এ ফিরে আসলে
+    Lock আবার Check হবে।
+*/
 
 document.addEventListener(
     "visibilitychange",
@@ -2022,19 +2089,114 @@ document.addEventListener(
         }
 
 
-        checkAccount();
+        const blocked =
+            localStorage.getItem(
+                BLOCKED_KEY
+            ) === "true";
+
+
+        /*
+            Account Blocked হলে।
+        */
+
+        if(blocked){
+
+            showScreen(
+                "blockedScreen"
+            );
+
+            return;
+        }
+
+
+        const lockUntil =
+            parseInt(
+
+                localStorage.getItem(
+                    LOCK_UNTIL_KEY
+                ) || "0",
+
+                10
+
+            );
+
+
+        /*
+            Lock এখনো চলছে।
+        */
+
+        if(
+            lockUntil > Date.now()
+        ){
+
+            startLiveCountdown(
+                lockUntil
+            );
+
+
+            showScreen(
+                "lockScreen"
+            );
+
+        }
+
+
+        /*
+            Lock শেষ।
+        */
+
+        else if(lockUntil){
+
+            clearInterval(
+                countdownInterval
+            );
+
+
+            localStorage.removeItem(
+                LOCK_UNTIL_KEY
+            );
+
+
+            const attempts =
+                getAttempts();
+
+
+            document
+                .getElementById(
+                    "attemptsText"
+                )
+                .textContent =
+                `Incorrect Attempts: ${attempts} / 7`;
+
+
+            accessDrawer.clear();
+
+
+            document
+                .getElementById(
+                    "accessStatus"
+                )
+                .textContent =
+                "";
+
+
+            showScreen(
+                "accessScreen"
+            );
+        }
 
     }
 );
 
 
-/* =====================================================
-   INITIAL PAGE LOAD
-===================================================== */
+
+/*
+    Initial Page Load
+*/
 
 checkAccount();
 
 </script>
 
 </body>
-</html>
+    </html>
