@@ -1,8 +1,12 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pattern Access</title><style>
+<title>Pattern Access</title>
+
+<style>
 *{
     margin:0;
     padding:0;
@@ -320,7 +324,14 @@ body{
         font-size:24px;
     }
 }
-</style></head><body><div class="card"><div class="icon">🔐</div>
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="icon">🔐</div>
 
 <div class="title">
     Pattern Access
@@ -505,7 +516,10 @@ body{
 
 </div>
 
-</div><script>
+</div>
+
+
+<script>
 
 const HOME_PAGE = "home.html";
 
@@ -526,7 +540,7 @@ const BLOCKED_KEY =
 
 
 /*
-    FINAL LOCK SYSTEM
+    LOCK SYSTEM
 
     1st wrong → 30 seconds
     2nd wrong → 1 minute
@@ -1286,6 +1300,18 @@ const createDrawer =
 
 /*
     REPEAT PATTERN
+
+    নতুন Logic:
+
+    Repeat Pattern যদি
+    প্রথম Pattern-এর সাথে
+    match না করে,
+
+    তাহলে Error animation-এর পরে
+    আবার Create Pattern Screen-এ
+    নিয়ে যাবে।
+
+    অর্থাৎ নতুন Pattern তৈরি করতে হবে।
 */
 
 const repeatDrawer =
@@ -1322,18 +1348,89 @@ const repeatDrawer =
 
             }else{
 
+                confirmButton.disabled =
+                    true;
+
+
+                /*
+                    Pattern empty হলে
+                    আগের মতোই invalid থাকবে।
+                */
+
+                if(!repeatPattern){
+
+                    document
+                        .getElementById(
+                            "repeatStatus"
+                        )
+                        .textContent =
+                        "Pattern must contain at least 4 points.";
+
+                    return;
+                }
+
+
+                /*
+                    Pattern আলাদা হলে
+                    Error দেখিয়ে
+                    Create Pattern Screen-এ ফিরে যাবে।
+                */
+
                 document
                     .getElementById(
                         "repeatStatus"
                     )
                     .textContent =
-                    repeatPattern
-                        ? "Pattern does not match."
-                        : "";
+                    "Pattern does not match. Creating a new pattern...";
 
 
-                confirmButton.disabled =
-                    true;
+                repeatDrawer.showError();
+
+
+                /*
+                    Error animation শেষ হওয়ার
+                    সাথে সাথে নতুন Pattern Screen।
+                */
+
+                setTimeout(() => {
+
+                    createPattern = "";
+
+                    repeatPattern = "";
+
+
+                    createDrawer.clear();
+
+                    repeatDrawer.clear();
+
+
+                    nextButton.disabled =
+                        true;
+
+                    confirmButton.disabled =
+                        true;
+
+
+                    document
+                        .getElementById(
+                            "createStatus"
+                        )
+                        .textContent = "";
+
+
+                    document
+                        .getElementById(
+                            "repeatStatus"
+                        )
+                        .textContent = "";
+
+
+                    showScreen(
+                        "createScreen"
+                    );
+
+                },500);
+
             }
 
         }
@@ -1426,12 +1523,17 @@ confirmButton.addEventListener(
             repeatPattern
         ){
 
+            /*
+                Safety check:
+                mismatch হলে আবার Create Screen।
+            */
+
             document
                 .getElementById(
                     "repeatStatus"
                 )
                 .textContent =
-                "Patterns do not match. Try again.";
+                "Pattern does not match. Creating a new pattern...";
 
 
             confirmButton.disabled =
@@ -1442,6 +1544,42 @@ confirmButton.addEventListener(
 
 
             repeatPattern = "";
+
+
+            setTimeout(() => {
+
+                createPattern = "";
+
+
+                createDrawer.clear();
+
+                repeatDrawer.clear();
+
+
+                nextButton.disabled =
+                    true;
+
+
+                document
+                    .getElementById(
+                        "createStatus"
+                    )
+                    .textContent = "";
+
+
+                document
+                    .getElementById(
+                        "repeatStatus"
+                    )
+                    .textContent = "";
+
+
+                showScreen(
+                    "createScreen"
+                );
+
+            },500);
+
 
             return;
         }
@@ -2053,5 +2191,7 @@ document.addEventListener(
 
 checkAccount();
 
-</script></body>
+</script>
+
+</body>
 </html>
