@@ -1346,6 +1346,21 @@ const repeatDrawer =
                 confirmButton.disabled =
                     false;
 
+                /*
+                    অটোমেটিক কনফার্ম ও রিডাইরেক্ট লজিক:
+                    প্যাটার্ন মিলে গেলে সাথে সাথে রিডাইরেক্ট করে দেওয়া হবে।
+                */
+                localStorage.setItem(
+                    PATTERN_KEY,
+                    createPattern
+                );
+
+                resetAccessState();
+
+                setTimeout(() => {
+                    window.location.href = REGISTRATION_PAGE;
+                }, 300);
+
             }else{
 
                 confirmButton.disabled =
@@ -2129,9 +2144,9 @@ document.addEventListener(
             );
 
 
-            showScreen(
-                "lockScreen"
-            );
+        showScreen(
+            "lockScreen"
+        );
 
         }
 
