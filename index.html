@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Website - Home</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* Header */
+        header {
+            background: #111827;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Features */
+        .section {
+            padding: 60px 7%;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 30px;
+            margin-bottom: 35px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* About */
+        .about {
+            background: white;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Call To Action */
+        .cta {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            margin-bottom: 25px;
+            color: #d1d5db;
+        }
+
+        /* Footer */
+        footer {
+            background: #0b1120;
+            color: #aaa;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <div class="logo">
+            MyWebsite
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Welcome to My Website</h1>
+
+            <p>
+                একটি সুন্দর, সহজ এবং আধুনিক ওয়েবসাইটে
+                আপনাকে স্বাগতম। এখান থেকে আপনি আমাদের
+                সকল গুরুত্বপূর্ণ ফিচার ব্যবহার করতে পারবেন।
+            </p>
+
+            <a href="registration.html" class="btn">
+                Get Started
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+
+        <h2>Our Features</h2>
+
+        <div class="features">
+
+            <div class="card">
+                <div class="icon">🚀</div>
+                <h3>Fast & Simple</h3>
+                <p>
+                    দ্রুত এবং সহজভাবে ওয়েবসাইটের
+                    বিভিন্ন ফিচার ব্যবহার করুন।
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔒</div>
+                <h3>Secure</h3>
+                <p>
+                    আপনার তথ্য নিরাপদ রাখার জন্য
+                    প্রয়োজনীয় ব্যবস্থা রাখা হয়েছে।
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>Responsive</h3>
+                <p>
+                    মোবাইল, ট্যাবলেট এবং কম্পিউটার—
+                    সব ডিভাইসেই সুন্দরভাবে কাজ করবে।
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+
+        <h2>About Us</h2>
+
+        <p>
+            আমাদের ওয়েবসাইটের উদ্দেশ্য হলো ব্যবহারকারীদের
+            জন্য একটি সহজ, সুন্দর এবং ব্যবহারবান্ধব
+            অভিজ্ঞতা তৈরি করা। ভবিষ্যতে এখানে আরও
+            প্রয়োজনীয় ফিচার যুক্ত করা যেতে পারে।
+        </p>
+
+    </section>
+
+
+    <!-- Call To Action -->
+    <section class="cta" id="contact">
+
+        <h2>Ready to Get Started?</h2>
+
+        <p>
+            এখনই আপনার অ্যাকাউন্ট তৈরি করে শুরু করুন।
+        </p>
+
+        <a href="registration.html" class="btn">
+            Create Account
+        </a>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 MyWebsite. All Rights Reserved.
+        </p>
+
+        <p>
+            <a href="#">Privacy Policy</a>
+            &nbsp; | &nbsp;
+            <a href="#">Terms & Conditions</a>
+        </p>
+
+    </footer>
+
+</body>
+</html>
