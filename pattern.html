@@ -521,9 +521,9 @@ body{
 
 <script>
 
-const HOME_PAGE = "home.html";
+const HOME_PAGE = "./home.html";
 
-const REGISTRATION_PAGE = "registration.html";
+const REGISTRATION_PAGE = "./registration.html";
 
 
 const PATTERN_KEY =
@@ -693,14 +693,16 @@ function resetAccessState(){
 /*
     Correct Pattern →
     Reset → Home Page
+    Safe redirect (Safe for Chrome/GitHub Pages)
 */
 
 function goHome(){
 
     resetAccessState();
 
-    window.location.href =
-        HOME_PAGE;
+    setTimeout(() => {
+        window.location.assign(HOME_PAGE);
+    }, 100);
 }
 
 
@@ -722,8 +724,9 @@ createAccount.addEventListener(
         resetAccessState();
 
 
-        window.location.href =
-            REGISTRATION_PAGE;
+        setTimeout(() => {
+            window.location.assign(REGISTRATION_PAGE);
+        }, 100);
 
     }
 );
@@ -1301,6 +1304,8 @@ const createDrawer =
 /*
     REPEAT PATTERN
 
+    নতুন Logic:
+
     Repeat Pattern যদি
     প্রথম Pattern-এর সাথে
     match না করে,
@@ -1585,14 +1590,7 @@ confirmButton.addEventListener(
 
         /*
             Pattern successfully confirmed.
-
-            Correct Pattern হলে
-            saved pattern হিসেবে
-            localStorage-এ save হবে।
-
-            তারপর সরাসরি
-            registration.html
-            এ যাবে।
+            Safe redirect to Registration
         */
 
         localStorage.setItem(
@@ -1604,8 +1602,9 @@ confirmButton.addEventListener(
         resetAccessState();
 
 
-        window.location.href =
-            REGISTRATION_PAGE;
+        setTimeout(() => {
+            window.location.assign(REGISTRATION_PAGE);
+        }, 100);
 
     }
 );
@@ -1635,11 +1634,12 @@ function verifyAccess(pattern){
 
 
     /*
+        যেকোনো Step-এ
         Correct Pattern হলে:
 
         Attempts reset
         Lock reset
-        Direct Home Page
+        Direct Home
     */
 
     if(
@@ -2199,4 +2199,4 @@ checkAccount();
 </script>
 
 </body>
-    </html>
+</html>
